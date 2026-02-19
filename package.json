@@ -1,0 +1,28 @@
+{
+  "name": "ai-lab-boilerplate",
+  "version": "1.0.0",
+  "description": "Open-source boilerplate for testing and comparing AI providers side by side. Bring your own API keys.",
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,green \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "start": "cd backend && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "boilerplate",
+    "openai",
+    "anthropic",
+    "gemini",
+    "mistral",
+    "typescript",
+    "angular",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

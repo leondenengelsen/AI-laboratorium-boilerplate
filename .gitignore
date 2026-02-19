@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+*.js.map
+
+# Engine build
+engine/dist/
+
+# Backend build
+backend/dist/
+
+# Runtime data (encrypted keys, presets — never commit)
+data/
+backend/data/
+
+# Angular
+frontend/.angular/
+frontend/dist/
+
+# IDE / Tools
+.idea/
+.vscode/
+.claude/
+CLAUDE.md
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Testing
+coverage/

@@ -1,0 +1,70 @@
+@if (loading()) {
+  <div class="flex justify-center py-8">
+    <span class="loading loading-spinner loading-md"></span>
+  </div>
+} @else {
+  @if (globalError()) {
+    <div class="alert alert-error mb-4">
+      <span>{{ globalError() }}</span>
+    </div>
+  }
+
+  <div class="flex flex-col gap-4">
+    @for (provider of providers(); track provider.name) {
+      <div class="card bg-base-200">
+        <div class="card-body p-4">
+          <h3 class="card-title text-sm">{{ provider.displayName }}</h3>
+
+          @if (getKeyForProvider(provider.name); as keyRef) {
+            <!-- Key exists: show hint and delete -->
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="font-mono text-sm badge badge-neutral">{{ keyRef.hint }}</span>
+              @if (keyRef.label) {
+                <span class="text-xs opacity-50">{{ keyRef.label }}</span>
+              }
+              <button
+                class="btn btn-ghost btn-xs text-error ml-auto"
+                (click)="deleteKey(keyRef.id)"
+              >
+                Delete
+              </button>
+            </div>
+          } @else {
+            <!-- No key: show input form -->
+            <div class="flex flex-col gap-2">
+              <input
+                type="password"
+                class="input input-bordered input-sm"
+                placeholder="Paste API key..."
+                [ngModel]="getInputState(provider.name).key"
+                (ngModelChange)="updateKeyInput(provider.name, 'key', $event)"
+                autocomplete="off"
+              />
+              <input
+                type="text"
+                class="input input-bordered input-sm"
+                placeholder="Label (e.g., My Key)"
+                [ngModel]="getInputState(provider.name).label"
+                (ngModelChange)="updateKeyInput(provider.name, 'label', $event)"
+                autocomplete="off"
+              />
+              @if (getInputState(provider.name).error) {
+                <p class="text-error text-xs">{{ getInputState(provider.name).error }}</p>
+              }
+              <button
+                class="btn btn-primary btn-sm self-end"
+                (click)="saveKey(provider.name)"
+                [disabled]="getInputState(provider.name).saving || !getInputState(provider.name).key.trim()"
+              >
+                @if (getInputState(provider.name).saving) {
+                  <span class="loading loading-spinner loading-xs"></span>
+                }
+                Save
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

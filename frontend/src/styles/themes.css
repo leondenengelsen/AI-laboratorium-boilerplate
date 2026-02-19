@@ -1,0 +1,300 @@
+/*
+ * AI Lab Theme Definitions
+ * Single source of truth for all colour values.
+ * 3 themes × 2 modes = 6 variants.
+ *
+ * All colours in OKLCH format as required by daisyUI v5.
+ * Follows the daisyUI CSS custom property naming convention.
+ */
+
+/* ==========================================================================
+   Theme 1 — Faded Arcade
+   Inspired by CRT monitors and worn arcade cabinets. Warm and techy.
+   ========================================================================== */
+
+[data-theme="arcade-light"] {
+  color-scheme: light;
+
+  /* Base surfaces */
+  --color-base-100: oklch(95.682% 0.0119 79.784);   /* #F5F0E8 background */
+  --color-base-200: oklch(93.162% 0.0169 88.002);   /* #EDE8DC surface/cards */
+  --color-base-300: oklch(85.132% 0.0253 91.641);   /* #D4CEBC border */
+  --color-base-content: oklch(27.632% 0.0371 297.702); /* #2A2438 text primary */
+
+  /* Primary — dusty purple */
+  --color-primary: oklch(57.182% 0.0754 295.152);
+  --color-primary-content: oklch(96% 0.005 80);
+
+  /* Secondary — muted terracotta */
+  --color-secondary: oklch(68.770% 0.1364 41.422);
+  --color-secondary-content: oklch(25% 0.035 42);
+
+  /* Accent — slate blue */
+  --color-accent: oklch(62.313% 0.0671 229.985);
+  --color-accent-content: oklch(96% 0.005 230);
+
+  /* Neutral — dark text tone */
+  --color-neutral: oklch(27.632% 0.0371 297.702);
+  --color-neutral-content: oklch(93.162% 0.0169 88.002);
+
+  /* Semantic colours */
+  --color-info: oklch(62.313% 0.0671 229.985);      /* #5B8FA8 slate blue */
+  --color-info-content: oklch(96% 0.005 230);
+  --color-success: oklch(65.243% 0.0786 151.755);   /* #6B9E78 sage green */
+  --color-success-content: oklch(96% 0.005 152);
+  --color-warning: oklch(80% 0.12 85);
+  --color-warning-content: oklch(25% 0.03 85);
+  --color-error: oklch(62% 0.14 15);
+  --color-error-content: oklch(96% 0.005 15);
+
+  /* Design tokens */
+  --radius-selector: 0.75rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+[data-theme="arcade-dark"] {
+  color-scheme: dark;
+
+  /* Base surfaces */
+  --color-base-100: oklch(23.052% 0.0382 287.585);  /* #1C1A2E background */
+  --color-base-200: oklch(27.323% 0.0404 287.574);  /* #26243A surface/cards */
+  --color-base-300: oklch(35.320% 0.0414 287.898);  /* #3A3850 border */
+  --color-base-content: oklch(93.162% 0.0169 88.002); /* #EDE8DC text primary */
+
+  /* Primary — soft lavender */
+  --color-primary: oklch(71.906% 0.0646 298.296);
+  --color-primary-content: oklch(23% 0.035 288);
+
+  /* Secondary — peachy coral */
+  --color-secondary: oklch(74.234% 0.1146 43.556);
+  --color-secondary-content: oklch(23% 0.03 44);
+
+  /* Accent — muted sky blue */
+  --color-accent: oklch(72.446% 0.0634 224.651);
+  --color-accent-content: oklch(23% 0.015 225);
+
+  /* Neutral — surface tone */
+  --color-neutral: oklch(27.323% 0.0404 287.574);
+  --color-neutral-content: oklch(93.162% 0.0169 88.002);
+
+  /* Semantic colours */
+  --color-info: oklch(72.446% 0.0634 224.651);      /* #7AAFC4 */
+  --color-info-content: oklch(20% 0.015 225);
+  --color-success: oklch(75.467% 0.0842 150.749);   /* #88BF94 */
+  --color-success-content: oklch(20% 0.02 151);
+  --color-warning: oklch(84% 0.12 85);
+  --color-warning-content: oklch(20% 0.03 85);
+  --color-error: oklch(70% 0.14 15);
+  --color-error-content: oklch(20% 0.03 15);
+
+  /* Design tokens */
+  --radius-selector: 0.75rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ==========================================================================
+   Theme 2 — Carbon
+   Premium SaaS aesthetic. Electric blue, vivid violet, ultra-clean zinc base.
+   Inspired by Linear, Vercel, Stripe.
+   ========================================================================== */
+
+[data-theme="carbon-light"] {
+  color-scheme: light;
+
+  /* Base surfaces — pure zinc neutrals */
+  --color-base-100: oklch(98.510% 0.0000 90);       /* #FAFAFA background */
+  --color-base-200: oklch(96.743% 0.0021 291.093);  /* #F4F4F5 surface/cards */
+  --color-base-300: oklch(91.972% 0.0064 291.043);  /* #E4E4E7 border */
+  --color-base-content: oklch(14.075% 0.0068 290.594); /* #09090B text primary */
+
+  /* Primary — electric blue */
+  --color-primary: oklch(54.579% 0.2849 272.599);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary — vivid violet */
+  --color-secondary: oklch(54.094% 0.3374 294.660);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent — cyan */
+  --color-accent: oklch(71.473% 0.1305 225.764);
+  --color-accent-content: oklch(14% 0.007 291);
+
+  /* Neutral — near-black */
+  --color-neutral: oklch(14.075% 0.0068 290.594);
+  --color-neutral-content: oklch(98.510% 0.0000 90);
+
+  /* Semantic colours */
+  --color-info: oklch(68.447% 0.1766 251.568);      /* #0EA5E9 sky blue */
+  --color-info-content: oklch(98% 0 0);
+  --color-success: oklch(69.614% 0.1974 150.354);   /* #10B981 emerald */
+  --color-success-content: oklch(98% 0 0);
+  --color-warning: oklch(76.910% 0.2569 90.175);    /* #F59E0B amber */
+  --color-warning-content: oklch(14% 0.007 291);
+  --color-error: oklch(63.683% 0.2078 25.331);      /* #EF4444 red */
+  --color-error-content: oklch(98% 0 0);
+
+  /* Design tokens — tight, sharp, modern */
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+[data-theme="carbon-dark"] {
+  color-scheme: dark;
+
+  /* Base surfaces — true black zinc */
+  --color-base-100: oklch(14.075% 0.0068 290.594);  /* #09090B background */
+  --color-base-200: oklch(21.032% 0.0091 290.650);  /* #18181B surface/cards */
+  --color-base-300: oklch(27.392% 0.0086 290.782);  /* #27272A border */
+  --color-base-content: oklch(98.510% 0.0000 90);   /* #FAFAFA text primary */
+
+  /* Primary — electric blue */
+  --color-primary: oklch(62.276% 0.2498 270.643);
+  --color-primary-content: oklch(98% 0 0);
+
+  /* Secondary — vivid violet */
+  --color-secondary: oklch(60.525% 0.3048 294.528);
+  --color-secondary-content: oklch(98% 0 0);
+
+  /* Accent — bright cyan */
+  --color-accent: oklch(79.702% 0.1365 220.545);
+  --color-accent-content: oklch(14% 0.007 291);
+
+  /* Neutral — zinc 900 surface */
+  --color-neutral: oklch(21.032% 0.0091 290.650);
+  --color-neutral-content: oklch(98.510% 0.0000 90);
+
+  /* Semantic colours */
+  --color-info: oklch(75.332% 0.1613 246.956);      /* #38BDF8 sky 400 */
+  --color-info-content: oklch(14% 0.007 291);
+  --color-success: oklch(77.321% 0.2006 151.297);   /* #34D399 emerald 300 */
+  --color-success-content: oklch(14% 0.007 291);
+  --color-warning: oklch(83.750% 0.2966 100.730);   /* #FBBF24 amber 300 */
+  --color-warning-content: oklch(14% 0.007 291);
+  --color-error: oklch(71.063% 0.1661 22.216);      /* #F87171 red 400 */
+  --color-error-content: oklch(14% 0.007 291);
+
+  /* Design tokens — tight, sharp, modern */
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* ==========================================================================
+   Theme 3 — Pastel Lab
+   90s science textbook meets modern UI. Softest and most approachable.
+   ========================================================================== */
+
+[data-theme="lab-light"] {
+  color-scheme: light;
+
+  /* Base surfaces */
+  --color-base-100: oklch(96.245% 0.0098 305.405);  /* #F4F1F8 background */
+  --color-base-200: oklch(93.836% 0.0169 304.797);  /* #EDE8F4 surface/cards */
+  --color-base-300: oklch(87.262% 0.0391 298.639);  /* #D8D0EC border */
+  --color-base-content: oklch(24.111% 0.0379 292.498); /* #201C30 text primary */
+
+  /* Primary — medium purple */
+  --color-primary: oklch(64.912% 0.1048 302.229);
+  --color-primary-content: oklch(96% 0.005 302);
+
+  /* Secondary — seafoam teal */
+  --color-secondary: oklch(76.501% 0.0815 175.384);
+  --color-secondary-content: oklch(24% 0.02 175);
+
+  /* Accent — soft amber */
+  --color-accent: oklch(83.323% 0.1167 87.978);
+  --color-accent-content: oklch(24% 0.03 88);
+
+  /* Neutral — dark text tone */
+  --color-neutral: oklch(24.111% 0.0379 292.498);
+  --color-neutral-content: oklch(93.836% 0.0169 304.797);
+
+  /* Semantic colours */
+  --color-info: oklch(60% 0.07 270);
+  --color-info-content: oklch(96% 0.005 270);
+  --color-success: oklch(76.501% 0.0815 175.384);   /* seafoam teal */
+  --color-success-content: oklch(24% 0.02 175);
+  --color-warning: oklch(83.323% 0.1167 87.978);    /* soft amber */
+  --color-warning-content: oklch(24% 0.03 88);
+  --color-error: oklch(69.345% 0.1296 11.269);      /* #E07888 dusty rose */
+  --color-error-content: oklch(96% 0.005 11);
+
+  /* Design tokens */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+[data-theme="lab-dark"] {
+  color-scheme: dark;
+
+  /* Base surfaces */
+  --color-base-100: oklch(20.675% 0.0179 294.977);  /* #18161F background */
+  --color-base-200: oklch(24.912% 0.0265 294.220);  /* #221F2D surface/cards */
+  --color-base-300: oklch(30.632% 0.0359 293.337);  /* #302C40 border */
+  --color-base-content: oklch(93.836% 0.0169 304.797); /* #EDE8F4 text primary */
+
+  /* Primary — light purple */
+  --color-primary: oklch(74.429% 0.0849 304.443);
+  --color-primary-content: oklch(21% 0.02 304);
+
+  /* Secondary — bright seafoam */
+  --color-secondary: oklch(83.339% 0.0706 177.663);
+  --color-secondary-content: oklch(21% 0.015 178);
+
+  /* Accent — warm amber */
+  --color-accent: oklch(86.668% 0.1115 89.599);
+  --color-accent-content: oklch(21% 0.03 90);
+
+  /* Neutral — surface tone */
+  --color-neutral: oklch(24.912% 0.0265 294.220);
+  --color-neutral-content: oklch(93.836% 0.0169 304.797);
+
+  /* Semantic colours */
+  --color-info: oklch(70% 0.07 270);
+  --color-info-content: oklch(20% 0.015 270);
+  --color-success: oklch(83.339% 0.0706 177.663);   /* bright seafoam */
+  --color-success-content: oklch(20% 0.015 178);
+  --color-warning: oklch(86.668% 0.1115 89.599);    /* warm amber */
+  --color-warning-content: oklch(20% 0.03 90);
+  --color-error: oklch(75.768% 0.1172 9.490);       /* #F090A0 */
+  --color-error-content: oklch(20% 0.025 9);
+
+  /* Design tokens */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}

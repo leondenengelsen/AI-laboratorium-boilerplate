@@ -1,0 +1,438 @@
+<div class="flex flex-col gap-6 w-full max-w-4xl mx-auto">
+
+  <!-- Init error -->
+  @if (initError()) {
+    <div class="alert alert-error">
+      <span>{{ initError() }}</span>
+    </div>
+  }
+
+  <!-- Provider & Model selectors — single grid so the divider spans both rows -->
+  <div class="grid grid-cols-1 sm:grid-cols-[1fr_1px_1fr] gap-x-4 gap-y-6">
+
+    <!-- Provider 1 -->
+    @if (slots()[0]; as slot0) {
+      <div class="form-control gap-1">
+        <label class="label text-xs font-semibold opacity-60">Provider 1</label>
+        <select
+          class="select select-bordered select-sm w-full"
+          [ngModel]="slot0.provider"
+          (ngModelChange)="selectSlotProvider(slot0.id, $event)"
+          [compareWith]="compareByName"
+        >
+          @for (provider of providers(); track provider.name) {
+            <option [ngValue]="provider">{{ provider.displayName }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    <!-- Vertical divider — spans both the provider and model rows -->
+    <div class="hidden sm:block sm:row-span-2 bg-base-content/10"></div>
+
+    <!-- Provider 2 -->
+    @if (slots()[1]; as slot1) {
+      <div class="form-control gap-1">
+        <label class="label text-xs font-semibold opacity-60">Provider 2</label>
+        <select
+          class="select select-bordered select-sm w-full"
+          [ngModel]="slot1.provider"
+          (ngModelChange)="selectSlotProvider(slot1.id, $event)"
+          [compareWith]="compareByName"
+        >
+          @for (provider of providers(); track provider.name) {
+            <option [ngValue]="provider">{{ provider.displayName }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    <!-- Model 1 -->
+    @if (slots()[0]; as slot0) {
+      <div class="form-control gap-1">
+        <label class="label text-xs font-semibold opacity-60">Model 1</label>
+        <div class="dropdown w-full">
+          <div tabindex="0" role="button" class="select select-bordered select-sm w-full text-left flex items-center">
+            @if (slot0.model) {
+              <span class="truncate">{{ slot0.model.displayName }}</span>
+            } @else {
+              <span class="opacity-50">Select model</span>
+            }
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-50 w-full p-1 shadow-lg max-h-60 overflow-y-auto flex-nowrap">
+            @for (model of slot0.sortedModels; track model.id) {
+              <li>
+                <button
+                  class="flex justify-between items-center gap-2 text-sm"
+                  [class.active]="slot0.model?.id === model.id"
+                  (click)="selectSlotModel(slot0.id, model)"
+                >
+                  <span>{{ model.displayName }}</span>
+                  <span class="text-xs opacity-60 whitespace-nowrap">
+                    ↑${{ model.inputPerMillion }} ↓${{ model.outputPerMillion }}
+                  </span>
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+        <label class="flex items-center gap-2 cursor-pointer mt-1">
+          <input
+            type="checkbox"
+            class="checkbox checkbox-xs checkbox-primary"
+            [checked]="slotDefaults()[0]"
+            (change)="setSlotDefault(0, !slotDefaults()[0])"
+          />
+          <span class="text-xs opacity-60">Default</span>
+        </label>
+      </div>
+    }
+
+    <!-- Model 2 -->
+    @if (slots()[1]; as slot1) {
+      <div class="form-control gap-1">
+        <label class="label text-xs font-semibold opacity-60">Model 2</label>
+        <div class="dropdown w-full">
+          <div tabindex="0" role="button" class="select select-bordered select-sm w-full text-left flex items-center">
+            @if (slot1.model) {
+              <span class="truncate">{{ slot1.model.displayName }}</span>
+            } @else {
+              <span class="opacity-50">Select model</span>
+            }
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-50 w-full p-1 shadow-lg max-h-60 overflow-y-auto flex-nowrap">
+            @for (model of slot1.sortedModels; track model.id) {
+              <li>
+                <button
+                  class="flex justify-between items-center gap-2 text-sm"
+                  [class.active]="slot1.model?.id === model.id"
+                  (click)="selectSlotModel(slot1.id, model)"
+                >
+                  <span>{{ model.displayName }}</span>
+                  <span class="text-xs opacity-60 whitespace-nowrap">
+                    ↑${{ model.inputPerMillion }} ↓${{ model.outputPerMillion }}
+                  </span>
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+        <label class="flex items-center gap-2 cursor-pointer mt-1">
+          <input
+            type="checkbox"
+            class="checkbox checkbox-xs checkbox-primary"
+            [checked]="slotDefaults()[1]"
+            (change)="setSlotDefault(1, !slotDefaults()[1])"
+          />
+          <span class="text-xs opacity-60">Default</span>
+        </label>
+      </div>
+    }
+
+  </div>
+
+  <!-- System Message / Tone / Context + Presets -->
+  <div class="flex flex-wrap items-center gap-2">
+    <button class="btn btn-outline btn-sm" onclick="cmp_system_message_modal.showModal()">
+      System Message
+      @if (systemMessage().trim()) {
+        <span class="badge badge-xs badge-primary"></span>
+      }
+    </button>
+
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 opacity-40 shrink-0">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+    </svg>
+
+    <button class="btn btn-outline btn-sm" onclick="cmp_tone_modal.showModal()">
+      Tone
+      @if (tone().trim()) {
+        <span class="badge badge-xs badge-secondary"></span>
+      }
+    </button>
+
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 opacity-40 shrink-0">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+    </svg>
+
+    <button class="btn btn-outline btn-sm" onclick="cmp_context_modal.showModal()">
+      Context
+      @if (context().trim()) {
+        <span class="badge badge-xs badge-accent"></span>
+      }
+    </button>
+
+    <div class="w-px h-6 bg-base-content opacity-20 mx-1 shrink-0"></div>
+
+    <label class="text-xs font-semibold opacity-60">Presets</label>
+    <select
+      class="select select-bordered select-sm w-36"
+      [ngModel]="selectedPreset()"
+      (ngModelChange)="loadPreset($event)"
+      [compareWith]="comparePresetById"
+    >
+      <option [ngValue]="null">-- Select a preset --</option>
+      @for (preset of presets(); track preset.id) {
+        <option [ngValue]="preset">{{ preset.name }}</option>
+      }
+    </select>
+
+    @if (selectedPreset()) {
+      <button
+        class="btn btn-outline btn-sm"
+        (click)="saveCurrentPreset()"
+        [disabled]="presetSaving()"
+      >
+        @if (presetSaving()) {
+          <span class="loading loading-spinner loading-xs"></span>
+        }
+        Save
+      </button>
+    }
+
+    <button class="btn btn-outline btn-sm" (click)="openSaveAsModal()">Save As</button>
+
+    @if (selectedPreset()) {
+      <button
+        class="btn btn-ghost btn-sm text-error"
+        (click)="deletePreset(selectedPreset()!.id)"
+      >
+        Delete
+      </button>
+    }
+  </div>
+
+  <!-- User Input -->
+  <div class="form-control gap-1">
+    <label class="label text-xs font-semibold opacity-60" for="cmp-user-message">Message</label>
+    <textarea
+      id="cmp-user-message"
+      class="textarea textarea-bordered w-full min-h-[2.5rem]"
+      style="field-sizing: content"
+      placeholder="Type your message..."
+      [ngModel]="userMessage()"
+      (ngModelChange)="userMessage.set($event)"
+      (keydown.meta.Enter)="compare()"
+      (keydown.control.Enter)="compare()"
+    ></textarea>
+  </div>
+
+  <!-- Compare Button + Keep context -->
+  <div class="flex items-center gap-4 flex-wrap">
+    <label class="flex items-center gap-2 cursor-pointer">
+      <input
+        type="checkbox"
+        class="toggle toggle-sm toggle-primary"
+        [checked]="multiTurnEnabled()"
+        (change)="multiTurnEnabled.set(!multiTurnEnabled())"
+      />
+      <span class="text-xs font-semibold opacity-60">Keep context</span>
+    </label>
+    @if (multiTurnEnabled() && hasStarted()) {
+      <button class="btn btn-ghost btn-sm" (click)="clearComparison()">New Comparison</button>
+    }
+    <button
+      class="btn btn-primary sm:ml-auto"
+      (click)="compare()"
+      [disabled]="comparing() || !userMessage().trim()"
+    >
+      @if (comparing()) {
+        <span class="loading loading-spinner loading-sm"></span>
+        @if (slots()[0].streamingText || slots()[1].streamingText) {
+          Streaming...
+        } @else {
+          Connecting...
+        }
+      } @else {
+        Compare
+      }
+    </button>
+  </div>
+
+  <!-- Side-by-side responses -->
+  @if (hasStarted()) {
+    <div class="grid grid-cols-2 gap-4 items-start">
+      @for (slot of slots(); track slot.id; let i = $index) {
+        <div class="flex flex-col gap-3">
+
+          <!-- Provider label -->
+          <div class="flex flex-col gap-0.5">
+            <span class="text-xs font-semibold opacity-40">Provider {{ i + 1 }}</span>
+            @if (slot.provider && slot.model) {
+              <span class="text-xs opacity-60">{{ slot.provider.displayName }} · {{ slot.model.displayName }}</span>
+            }
+          </div>
+
+          <!-- Multi-turn conversation thread -->
+          @if (multiTurnEnabled() && slot.conversationHistory.length > 0) {
+            @for (msg of slot.conversationHistory; track $index) {
+              @if (msg.role === 'user') {
+                <div class="chat chat-end">
+                  <div class="chat-bubble bg-base-300 text-base-content text-sm whitespace-pre-wrap">{{ msg.content }}</div>
+                </div>
+              } @else {
+                <div class="chat chat-start">
+                  <div class="chat-bubble bg-base-200 text-base-content text-sm">
+                    <div class="markdown-response" [innerHTML]="msg.content | markdown"></div>
+                  </div>
+                </div>
+              }
+            }
+          }
+
+          <!-- Connecting -->
+          @if (slot.loading && !slot.streamingText) {
+            <div class="card bg-base-200 shadow">
+              <div class="card-body p-4 flex flex-row items-center gap-3">
+                <span class="loading loading-spinner loading-sm opacity-50"></span>
+                <span class="text-sm opacity-50">Connecting...</span>
+              </div>
+            </div>
+          }
+
+          <!-- Streaming -->
+          @if (slot.streamingText) {
+            <div class="card bg-base-200 shadow">
+              <div class="card-body">
+                <span class="loading loading-dots loading-xs opacity-60"></span>
+                <div class="markdown-response" [innerHTML]="slot.streamingText | markdown"></div>
+              </div>
+            </div>
+          }
+
+          <!-- Error -->
+          @if (slot.error) {
+            <div class="alert alert-error">
+              <span>{{ slot.error }}</span>
+            </div>
+          }
+
+          <!-- Final response (single-turn) -->
+          @if (!multiTurnEnabled() && slot.response) {
+            <div class="card bg-base-200 shadow">
+              <div class="card-body">
+                <div class="markdown-response" [innerHTML]="slot.response.text | markdown"></div>
+              </div>
+            </div>
+          }
+
+          <!-- Metrics -->
+          @if (slot.response && !slot.loading) {
+            <app-metrics-panel [response]="slot.response" [compact]="true" />
+          }
+
+        </div>
+      }
+    </div>
+  }
+
+</div>
+
+<!-- System Message Modal -->
+<dialog id="cmp_system_message_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold mb-4">System Message</h3>
+    <textarea
+      class="textarea textarea-bordered w-full min-h-[6rem]"
+      style="field-sizing: content"
+      placeholder="You are a helpful assistant..."
+      [ngModel]="systemMessage()"
+      (ngModelChange)="systemMessage.set($event)"
+    ></textarea>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+<!-- Tone Modal -->
+<dialog id="cmp_tone_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold mb-4">Tone</h3>
+    <textarea
+      class="textarea textarea-bordered w-full min-h-[6rem]"
+      style="field-sizing: content"
+      placeholder="Speak casually, like a friend. Be warm and direct..."
+      [ngModel]="tone()"
+      (ngModelChange)="tone.set($event)"
+    ></textarea>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+<!-- Context Modal -->
+<dialog id="cmp_context_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold mb-4">Context</h3>
+    <p class="text-xs opacity-60 mb-2">Additional background information sent with the system message.</p>
+    <textarea
+      class="textarea textarea-bordered w-full min-h-[6rem]"
+      style="field-sizing: content"
+      placeholder="Provide any relevant background context here..."
+      [ngModel]="context()"
+      (ngModelChange)="context.set($event)"
+    ></textarea>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+<!-- Save Preset Modal -->
+<dialog id="cmp_save_preset_modal" class="modal">
+  <div class="modal-box max-w-sm">
+    <h3 class="text-lg font-bold mb-4">Save as New Preset</h3>
+    <div class="form-control gap-2">
+      <label class="label text-xs font-semibold opacity-60" for="cmp-preset-name">Preset Name</label>
+      <input
+        id="cmp-preset-name"
+        type="text"
+        class="input input-bordered input-sm"
+        placeholder="My Preset"
+        [ngModel]="presetName()"
+        (ngModelChange)="presetName.set($event)"
+        autocomplete="off"
+      />
+    </div>
+    @if (presetError()) {
+      <div class="alert alert-error mt-3 text-sm">
+        <span>{{ presetError() }}</span>
+      </div>
+    }
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-sm btn-ghost">Cancel</button>
+      </form>
+      <button
+        class="btn btn-sm btn-primary"
+        (click)="saveAsNewPreset()"
+        [disabled]="presetSaving() || !presetName().trim()"
+      >
+        @if (presetSaving()) {
+          <span class="loading loading-spinner loading-xs"></span>
+        }
+        Save
+      </button>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

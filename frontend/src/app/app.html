@@ -1,0 +1,114 @@
+<div class="min-h-screen bg-base-100">
+  <!-- Navbar -->
+  <div class="navbar bg-base-300 sticky top-0 z-50 shadow-sm">
+    <div class="flex-1">
+      <span class="text-xl font-bold px-4">AI Lab</span>
+    </div>
+    <div class="flex-none px-2 gap-1">
+      <div class="join mr-2">
+        <button
+          class="btn btn-sm join-item"
+          [class.btn-primary]="mode() === 'chat'"
+          [class.btn-ghost]="mode() !== 'chat'"
+          (click)="mode.set('chat')"
+        >Chat</button>
+        <button
+          class="btn btn-sm join-item"
+          [class.btn-primary]="mode() === 'compare'"
+          [class.btn-ghost]="mode() !== 'compare'"
+          (click)="mode.set('compare')"
+        >Compare</button>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="settings_modal.showModal()">Settings</button>
+      <button class="btn btn-ghost btn-sm" onclick="pricing_modal.showModal()">Pricing</button>
+      <app-theme-switcher />
+    </div>
+  </div>
+
+  <main class="p-6">
+    @if (mode() === 'chat') {
+      <app-chat-panel [streamingEnabled]="streamingEnabled()" />
+    } @else {
+      <app-comparison-panel [streamingEnabled]="streamingEnabled()" />
+    }
+  </main>
+</div>
+
+<!-- Settings Modal -->
+<dialog id="settings_modal" class="modal">
+  <div class="modal-box max-w-lg">
+    <h3 class="text-lg font-bold mb-4">Settings</h3>
+    <app-settings-panel />
+    <div class="divider"></div>
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="font-semibold text-sm">Streaming</p>
+        <p class="text-xs opacity-60">Show tokens as they arrive</p>
+      </div>
+      <input
+        type="checkbox"
+        class="toggle toggle-primary"
+        [checked]="streamingEnabled()"
+        (change)="streamingEnabled.set(!streamingEnabled())"
+      />
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-sm">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+<!-- Pricing Modal -->
+<dialog id="pricing_modal" class="modal">
+  <div class="modal-box max-w-5xl">
+    <h3 class="text-lg font-bold mb-4">Model Pricing (per 1M tokens)</h3>
+    <div class="overflow-x-auto">
+      <table class="table table-xs table-zebra">
+        <thead>
+          <tr>
+            <th class="whitespace-nowrap cursor-pointer select-none" (click)="sortPricing('provider')">
+              Provider @if (pricingSortField() === 'provider') { {{ pricingSortAsc() ? '\u25B2' : '\u25BC' }} }
+            </th>
+            <th class="whitespace-nowrap cursor-pointer select-none" (click)="sortPricing('model')">
+              Model @if (pricingSortField() === 'model') { {{ pricingSortAsc() ? '\u25B2' : '\u25BC' }} }
+            </th>
+            <th class="whitespace-nowrap">API ID</th>
+            <th class="text-right whitespace-nowrap cursor-pointer select-none" (click)="sortPricing('input')">
+              Input $/M @if (pricingSortField() === 'input') { {{ pricingSortAsc() ? '\u25B2' : '\u25BC' }} }
+            </th>
+            <th class="text-right whitespace-nowrap cursor-pointer select-none" (click)="sortPricing('output')">
+              Output $/M @if (pricingSortField() === 'output') { {{ pricingSortAsc() ? '\u25B2' : '\u25BC' }} }
+            </th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody class="text-xs">
+          @for (row of sortedPricing(); track row.apiId) {
+            <tr>
+              <td class="whitespace-nowrap">{{ row.provider }}</td>
+              <td class="whitespace-nowrap">{{ row.model }}</td>
+              <td class="font-mono whitespace-nowrap">{{ row.apiId }}</td>
+              <td class="text-right whitespace-nowrap font-semibold">{{ '$' + row.input.toFixed(2) }}</td>
+              <td class="text-right whitespace-nowrap font-semibold">{{ '$' + row.output.toFixed(2) }}</td>
+              <td>{{ row.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs opacity-50 mt-3">Prices are per million tokens and sourced from official provider documentation (Feb 2026). Verify current rates at each provider's pricing page before relying on these for cost estimates.</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-sm">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

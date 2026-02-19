@@ -1,0 +1,164 @@
+{
+  "lastVerified": "2026-02-18",
+  "reference": "https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json",
+  "providers": {
+    "claude": {
+      "displayName": "Anthropic Claude",
+      "models": {
+        "claude-opus-4-6": {
+          "displayName": "Claude Opus 4.6",
+          "description": "Most powerful Claude. Complex reasoning, long agentic tasks, advanced coding. 1M context.",
+          "inputPerMillion": 5.00,
+          "outputPerMillion": 25.00
+        },
+        "claude-sonnet-4-6": {
+          "displayName": "Claude Sonnet 4.6",
+          "description": "Best all-rounder. Excellent coding, reasoning, instruction following. Recommended default.",
+          "inputPerMillion": 3.00,
+          "outputPerMillion": 15.00
+        },
+        "claude-sonnet-4-5-20250929": {
+          "displayName": "Claude Sonnet 4.5",
+          "description": "Previous flagship Sonnet. Strong coding and agentic performance. 1M context.",
+          "inputPerMillion": 3.00,
+          "outputPerMillion": 15.00
+        },
+        "claude-haiku-4-5-20251001": {
+          "displayName": "Claude Haiku 4.5",
+          "description": "Fastest, cheapest Claude. Matches Sonnet 4 on coding at 3x lower cost.",
+          "inputPerMillion": 1.00,
+          "outputPerMillion": 5.00
+        }
+      }
+    },
+    "gemini": {
+      "displayName": "Google Gemini",
+      "models": {
+        "gemini-3-pro": {
+          "displayName": "Gemini 3 Pro",
+          "description": "Latest, most powerful Gemini. Reasoning-first, agentic, 1M context. Preview.",
+          "inputPerMillion": 2.00,
+          "outputPerMillion": 12.00
+        },
+        "gemini-3-flash": {
+          "displayName": "Gemini 3 Flash",
+          "description": "Latest fast Gemini. Best multimodal understanding. Lower cost. Preview.",
+          "inputPerMillion": 0.50,
+          "outputPerMillion": 3.00
+        },
+        "gemini-2.5-pro": {
+          "displayName": "Gemini 2.5 Pro",
+          "description": "Stable flagship. 1M context, deep reasoning, coding.",
+          "inputPerMillion": 1.25,
+          "outputPerMillion": 10.00
+        },
+        "gemini-2.5-flash": {
+          "displayName": "Gemini 2.5 Flash",
+          "description": "Stable workhorse. Fast, intelligent, cost-efficient.",
+          "inputPerMillion": 0.30,
+          "outputPerMillion": 2.50
+        },
+        "gemini-2.5-flash-lite": {
+          "displayName": "Gemini 2.5 Flash Lite",
+          "description": "Cheapest stable Gemini. High-volume, low-latency tasks.",
+          "inputPerMillion": 0.10,
+          "outputPerMillion": 0.40
+        },
+        "gemini-2.0-flash": {
+          "displayName": "Gemini 2.0 Flash",
+          "description": "Previous gen fast model. Retiring March 31, 2026.",
+          "inputPerMillion": 0.10,
+          "outputPerMillion": 0.40
+        }
+      }
+    },
+    "openai": {
+      "displayName": "OpenAI",
+      "models": {
+        "gpt-5.2": {
+          "displayName": "GPT-5.2",
+          "description": "Current flagship. Best task completion, coding, agentic workflows.",
+          "inputPerMillion": 1.75,
+          "outputPerMillion": 14.00
+        },
+        "gpt-5-mini": {
+          "displayName": "GPT-5 Mini",
+          "description": "Affordable reasoning. Great balance of power and cost.",
+          "inputPerMillion": 0.25,
+          "outputPerMillion": 2.00
+        },
+        "gpt-4.1": {
+          "displayName": "GPT-4.1",
+          "description": "Strong non-reasoning model. Coding, instruction following. 1M context.",
+          "inputPerMillion": 2.00,
+          "outputPerMillion": 8.00
+        },
+        "gpt-4.1-mini": {
+          "displayName": "GPT-4.1 Mini",
+          "description": "Smaller, fast, cost-efficient.",
+          "inputPerMillion": 0.40,
+          "outputPerMillion": 1.60
+        },
+        "gpt-4.1-nano": {
+          "displayName": "GPT-4.1 Nano",
+          "description": "Cheapest GPT. Simple high-volume tasks.",
+          "inputPerMillion": 0.10,
+          "outputPerMillion": 0.40
+        },
+        "gpt-4o": {
+          "displayName": "GPT-4o",
+          "description": "Previous flagship. General use and multimodal. 128K context.",
+          "inputPerMillion": 2.50,
+          "outputPerMillion": 10.00
+        },
+        "o3": {
+          "displayName": "o3",
+          "description": "Heavy reasoning. Math, science, complex multi-step logic.",
+          "inputPerMillion": 2.00,
+          "outputPerMillion": 8.00
+        },
+        "o4-mini": {
+          "displayName": "o4-mini",
+          "description": "Fast, cost-efficient reasoning. Great on math and coding.",
+          "inputPerMillion": 1.10,
+          "outputPerMillion": 4.40
+        }
+      }
+    },
+    "mistral": {
+      "displayName": "Mistral AI",
+      "models": {
+        "mistral-large-latest": {
+          "displayName": "Mistral Large",
+          "description": "Flagship MoE. General purpose, multimodal, 256K context. Apache 2.0.",
+          "inputPerMillion": 0.50,
+          "outputPerMillion": 1.50
+        },
+        "mistral-medium-latest": {
+          "displayName": "Mistral Medium",
+          "description": "Frontier-class multimodal at a fraction of the cost.",
+          "inputPerMillion": 0.40,
+          "outputPerMillion": 2.00
+        },
+        "mistral-small-latest": {
+          "displayName": "Mistral Small",
+          "description": "Lightweight and fast. Straightforward tasks at very low cost.",
+          "inputPerMillion": 0.10,
+          "outputPerMillion": 0.30
+        },
+        "magistral-medium-latest": {
+          "displayName": "Magistral Medium",
+          "description": "Reasoning model. Chain-of-thought, multilingual.",
+          "inputPerMillion": 2.00,
+          "outputPerMillion": 5.00
+        },
+        "magistral-small-latest": {
+          "displayName": "Magistral Small",
+          "description": "Open-source reasoning model. Apache 2.0. Reasoning on a budget.",
+          "inputPerMillion": 0.50,
+          "outputPerMillion": 1.50
+        }
+      }
+    }
+  }
+}

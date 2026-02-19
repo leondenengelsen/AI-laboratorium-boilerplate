@@ -1,0 +1,78 @@
+@use "tailwindcss";
+@import "./styles/themes.css";
+@plugin "daisyui" {
+  themes: arcade-light;
+}
+
+.markdown-response {
+  line-height: 1.7;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.25em; }
+  h3 { font-size: 1.1em; }
+
+  p {
+    margin-bottom: 0.75em;
+  }
+
+  ul, ol {
+    margin-left: 1.5em;
+    margin-bottom: 0.75em;
+  }
+
+  ul { list-style-type: disc; }
+  ol { list-style-type: decimal; }
+
+  li {
+    margin-bottom: 0.25em;
+  }
+
+  code {
+    background: var(--color-base-300);
+    padding: 0.15em 0.4em;
+    border-radius: 0.25em;
+    font-size: 0.9em;
+  }
+
+  pre {
+    background: var(--color-base-300);
+    padding: 1em;
+    border-radius: 0.5em;
+    overflow-x: auto;
+    margin-bottom: 0.75em;
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+
+  blockquote {
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1em;
+    margin-bottom: 0.75em;
+    opacity: 0.85;
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}

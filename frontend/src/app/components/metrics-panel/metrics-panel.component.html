@@ -1,0 +1,31 @@
+@if (response) {
+  <div [class]="compact ? 'grid grid-cols-3 gap-3' : 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3'">
+    <div class="rounded-lg bg-base-200 p-3 flex flex-col gap-1">
+      <span class="text-xs opacity-50">Latency</span>
+      <span class="text-lg font-bold tabular-nums">{{ response.latencyMs }}<span class="text-xs font-normal opacity-60">ms</span></span>
+    </div>
+
+    <div class="rounded-lg bg-base-200 p-3 flex flex-col gap-1">
+      <span class="text-xs opacity-50">Input</span>
+      <span class="text-lg font-bold tabular-nums">{{ response.usage.inputTokens }}</span>
+    </div>
+
+    <div class="rounded-lg bg-base-200 p-3 flex flex-col gap-1">
+      <span class="text-xs opacity-50">Output</span>
+      <span class="text-lg font-bold tabular-nums">{{ response.usage.outputTokens }}</span>
+    </div>
+
+    <div class="rounded-lg bg-base-200 p-3 flex flex-col gap-1">
+      <span class="text-xs opacity-50">Total</span>
+      <span class="text-lg font-bold tabular-nums">{{ response.usage.totalTokens }}</span>
+    </div>
+
+    <div [class]="compact ? 'rounded-lg bg-base-200 p-3 flex flex-col gap-1 col-span-2' : 'rounded-lg bg-base-200 p-3 flex flex-col gap-1 col-span-2 sm:col-span-1'">
+      <span class="text-xs opacity-50">Est. Cost</span>
+      <span class="text-lg font-bold tabular-nums">${{ response.costEstimate.totalCost.toFixed(6) }}</span>
+      <span class="text-[0.65rem] opacity-30 font-mono tabular-nums">
+        in ${{ response.costEstimate.inputCost.toFixed(6) }} &middot; out ${{ response.costEstimate.outputCost.toFixed(6) }}
+      </span>
+    </div>
+  </div>
+}
