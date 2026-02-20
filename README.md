@@ -13,7 +13,7 @@ An open-source boilerplate for testing and comparing AI providers side by side. 
 
 ## Why AI Lab Boilerplate?
 
-Evaluating AI models usually means juggling multiple playgrounds, SDKs, and pricing pages. AI Lab Boilerplate gives you **one local interface** to test any supported provider — chat, compare responses side by side, and see exactly what each request costs. All API keys stay on your machine, encrypted at rest.
+I wanted to create something that let's me test system prompts, save them, and test llm's side by side in speed and overal quality of the output. AI Lab Boilerplate gives you **one local interface** to test any supported provider — chat, compare responses side by side, and see exactly what each request costs. All API keys stay on your machine, encrypted at rest.
 
 ---
 
